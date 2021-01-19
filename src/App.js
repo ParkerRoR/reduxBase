@@ -15,9 +15,6 @@ class app extends Component {
     autobind(this)
   }
 
-  state = {
-
-  }
 
   componentDidMount(){
     this.props.dispatch({
@@ -27,7 +24,7 @@ class app extends Component {
 
   getDados(){
     this.props.dispatch({ type : 'data/SET_STATE', payload : {
-      intialState: {...this.props.intialState, chave : 'value'}
+      initialState: {...this.props.initialState, chave : 'value'}
     }})
   }
   render() {
