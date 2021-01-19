@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react'
+import autobind from 'class-autobind'
+import {connect} from 'react-redux'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const mapStateToProps = ({data: {initialState}, dispatch}) => {
+  return{
+      initialState,
+      dispatch
+  }
 }
 
+class app extends Component {
+  constructor(props){
+    super(props)
+    autobind(this)
+  }
+
+  state = {
+
+  }
+
+  componentDidMount(){
+    this.props.dispatch({
+      type: 'data/INITIAL_STATE'
+    })
+  }
+
+  getDados(){
+    this.props.dispatch({ type : 'data/SET_STATE', payload : {
+      intialState: {...this.props.intialState, chave : 'value'}
+    }})
+  }
+  render() {
+    return (
+      <div>
+        <input type="text" />
+        <button >Enviar</button>
+        <button onClick={() => console.log(this.props)}>LOG REDUX</button>
+        <button onClick={() => this.getDados()}>Envia dados</button>
+        <ul></ul>
+      </div>
+    )
+  }
+}
+
+
+export const App = connect(mapStateToProps)(app)
 export default App;
