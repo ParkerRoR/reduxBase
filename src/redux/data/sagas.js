@@ -8,7 +8,7 @@ import {
 } from 'redux-saga/effects'
 
 import actions from './actions'
-
+import { initialState } from './initialState'
 function* getInitialState(){
   yield put({
     type : 'data/SET_STATE',
@@ -17,12 +17,12 @@ function* getInitialState(){
     }
   })
 
-  const dados = {id:'passou'}
+  const dados = initialState.initialState
   yield put({
     type : 'data/SET_STATE',
     payload : {
       initialState: dados
-  }
+    }
   })
 
 

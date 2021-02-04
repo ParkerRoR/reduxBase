@@ -15,13 +15,15 @@ import reducers from './redux/reducers'
 import sagas from './redux/sagas'
 
 import App from './App'
-
+import Jurema from './components/Jurema'
 
 
 
 const history = createHashHistory()
+
 const sagaMiddleware = createSagaMiddleware()
 const routeMiddleware = routerMiddleware(history)
+
 const middlewares = [sagaMiddleware, routeMiddleware]
 // if (process.env.NODE_ENV === 'development') {
 middlewares.push(logger)
@@ -39,9 +41,12 @@ ReactDOM.render(
       <BrowserRouter>
         <Switch>
             <Route path="/" exact component={props => <App {...props} />} history={history} />
+            <Route path="/qualquer" exact component={props => <Jurema {...props} />} history={history} />
             <Redirect to="/" />
         </Switch>
       </BrowserRouter>
   </Provider>,
+
+
   document.getElementById("root")
 );
